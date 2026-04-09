@@ -1,0 +1,1522 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Scoopsy - Website digital es krim dengan login admin, dashboard produk, artikel, testimoni, dan kontak." />
+  <meta name="keywords" content="website es krim, login admin, dashboard admin, tugas website digital, HTML CSS JavaScript" />
+  <meta name="author" content="OpenAI" />
+  <title>Scoopsy | Website Es Krim</title>
+  <style>
+    :root {
+      --pink: #ff4fa3;
+      --pink-dark: #e7338c;
+      --orange: #ff9b54;
+      --cream: #fff9f3;
+      --bg: #fff7fb;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --white: #ffffff;
+      --line: #f1d7e7;
+      --shadow: 0 12px 30px rgba(255, 79, 163, 0.12);
+      --radius: 24px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(255, 79, 163, 0.16), transparent 28%),
+        linear-gradient(180deg, #fff7fb 0%, #ffffff 50%, #fffaf4 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button, input, textarea {
+      font: inherit;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.86);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+    }
+
+    .logo {
+      width: 48px;
+      height: 48px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, var(--pink), #ff66cb, var(--orange));
+      display: grid;
+      place-items: center;
+      color: white;
+      font-size: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .brand small {
+      display: block;
+      color: var(--muted);
+      font-weight: 500;
+      font-size: 12px;
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      color: #4b5563;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .menu a:hover {
+      color: var(--pink-dark);
+    }
+
+    .btn {
+      border: none;
+      cursor: pointer;
+      transition: 0.25s ease;
+      border-radius: 18px;
+      padding: 12px 18px;
+      font-weight: 700;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, var(--pink), #ff67ca, var(--orange));
+      color: white;
+      box-shadow: var(--shadow);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--pink-dark);
+      border: 1px solid #f8c8df;
+    }
+
+    .hero {
+      padding: 64px 0 28px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: 38px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid #f5c8dc;
+      background: rgba(255,255,255,0.9);
+      color: var(--pink-dark);
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: clamp(36px, 5vw, 62px);
+      line-height: 1.08;
+      font-weight: 900;
+      letter-spacing: -1.5px;
+      max-width: 700px;
+    }
+
+    .hero p {
+      margin-top: 18px;
+      color: var(--muted);
+      max-width: 660px;
+      font-size: 17px;
+      line-height: 1.9;
+    }
+
+    .hero-actions {
+      margin-top: 28px;
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .hero-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 34px;
+    }
+
+    .mini-card,
+    .feature-card,
+    .product-card,
+    .article-card,
+    .testimonial-card,
+    .contact-card,
+    .contact-form,
+    .admin-panel,
+    .stat-card {
+      background: rgba(255,255,255,0.88);
+      border: 1px solid rgba(255,255,255,0.7);
+      border-radius: var(--radius);
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+    }
+
+    .mini-card {
+      padding: 18px;
+    }
+
+    .mini-card h4 {
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+    .mini-card p {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .hero-visual {
+      position: relative;
+    }
+
+    .hero-visual::before,
+    .hero-visual::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      filter: blur(50px);
+      z-index: -1;
+    }
+
+    .hero-visual::before {
+      width: 180px;
+      height: 180px;
+      background: rgba(255, 79, 163, 0.25);
+      top: 24px;
+      left: -20px;
+    }
+
+    .hero-visual::after {
+      width: 220px;
+      height: 220px;
+      background: rgba(255, 155, 84, 0.22);
+      bottom: 20px;
+      right: 0;
+    }
+
+    .hero-image {
+      overflow: hidden;
+      border-radius: 36px;
+      background: rgba(255,255,255,0.75);
+      padding: 14px;
+      box-shadow: 0 24px 50px rgba(255, 79, 163, 0.12);
+      position: relative;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 520px;
+      object-fit: cover;
+      border-radius: 28px;
+    }
+
+    .floating-box {
+      position: absolute;
+      left: 32px;
+      right: 32px;
+      bottom: 28px;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(8px);
+      padding: 18px;
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    .floating-box strong {
+      font-size: 22px;
+    }
+
+    .floating-box span {
+      display: inline-block;
+      margin-top: 4px;
+      color: var(--pink-dark);
+      font-weight: 700;
+    }
+
+    .section {
+      padding: 68px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      max-width: 780px;
+      margin: 0 auto 34px;
+    }
+
+    .section-title .eyebrow {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--pink-dark);
+      background: rgba(255,255,255,0.85);
+      border: 1px solid #f3cade;
+      margin-bottom: 14px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.18;
+      font-weight: 900;
+      letter-spacing: -1px;
+    }
+
+    .section-title p {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    .features-grid,
+    .products-grid,
+    .articles-grid,
+    .testimonials-grid {
+      display: grid;
+      gap: 22px;
+    }
+
+    .features-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .products-grid,
+    .articles-grid,
+    .testimonials-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .feature-card,
+    .article-card,
+    .testimonial-card {
+      padding: 26px;
+    }
+
+    .icon-bubble {
+      width: 52px;
+      height: 52px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      font-size: 24px;
+      background: linear-gradient(135deg, #ffd3ea, #fff0d7);
+      margin-bottom: 16px;
+    }
+
+    .feature-card h3,
+    .article-card h3,
+    .testimonial-card h3 {
+      font-size: 22px;
+      line-height: 1.3;
+      font-weight: 900;
+    }
+
+    .feature-card p,
+    .article-card p,
+    .testimonial-card p {
+      color: var(--muted);
+      margin-top: 10px;
+      line-height: 1.8;
+      font-size: 15px;
+    }
+
+    .search-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      padding: 22px;
+      margin-bottom: 24px;
+    }
+
+    .search-wrap {
+      width: min(380px, 100%);
+      position: relative;
+    }
+
+    .search-wrap input {
+      width: 100%;
+      padding: 14px 18px 14px 44px;
+      border-radius: 18px;
+      border: 1px solid #e8dce5;
+      background: white;
+      outline: none;
+    }
+
+    .search-wrap input:focus {
+      border-color: var(--pink);
+    }
+
+    .search-wrap span {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #9ca3af;
+    }
+
+    .product-card {
+      overflow: hidden;
+    }
+
+    .product-image {
+      height: 280px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: 0.35s ease;
+    }
+
+    .product-card:hover .product-image img {
+      transform: scale(1.06);
+    }
+
+    .label-best {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: rgba(255,255,255,0.92);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--pink-dark);
+    }
+
+    .product-body {
+      padding: 22px;
+    }
+
+    .product-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .product-meta small {
+      color: var(--pink-dark);
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .product-meta h3 {
+      font-size: 28px;
+      line-height: 1.15;
+      margin-top: 6px;
+    }
+
+    .price-tag {
+      white-space: nowrap;
+      background: #fff0f7;
+      color: var(--pink-dark);
+      padding: 10px 14px;
+      border-radius: 16px;
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    .product-body p {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    .article-tag {
+      color: var(--pink-dark);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .stars {
+      font-size: 18px;
+      color: #f5b301;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 24px;
+    }
+
+    .contact-card {
+      padding: 30px;
+      background: linear-gradient(135deg, var(--pink), #ff67ca, var(--orange));
+      color: white;
+      box-shadow: 0 20px 40px rgba(255, 79, 163, 0.18);
+    }
+
+    .contact-card h3 {
+      font-size: 34px;
+      line-height: 1.15;
+      margin: 10px 0 14px;
+    }
+
+    .contact-card p {
+      color: rgba(255,255,255,0.92);
+    }
+
+    .contact-item {
+      margin-top: 16px;
+      background: rgba(255,255,255,0.12);
+      border-radius: 18px;
+      padding: 14px 16px;
+      backdrop-filter: blur(8px);
+      font-weight: 700;
+    }
+
+    .contact-form {
+      padding: 30px;
+    }
+
+    .contact-form h3 {
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+
+    .contact-form p {
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .field {
+      width: 100%;
+      border: 1px solid #e6dce3;
+      border-radius: 18px;
+      padding: 14px 16px;
+      margin-bottom: 14px;
+      outline: none;
+      background: white;
+    }
+
+    .field:focus {
+      border-color: var(--pink);
+    }
+
+    .footer {
+      border-top: 1px solid rgba(255,255,255,0.8);
+      background: rgba(255,255,255,0.75);
+      margin-top: 28px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 24px 0;
+      color: var(--muted);
+      font-size: 14px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 18px;
+      font-weight: 700;
+    }
+
+    .footer-links a:hover {
+      color: var(--pink-dark);
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.45);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      z-index: 100;
+      backdrop-filter: blur(6px);
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-box {
+      width: min(100%, 560px);
+      background: white;
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.18);
+      max-height: 90vh;
+      overflow: auto;
+    }
+
+    .modal-box.large {
+      width: min(1120px, 100%);
+    }
+
+    .modal-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .modal-head h3 {
+      font-size: 30px;
+      line-height: 1.15;
+    }
+
+    .close-btn {
+      background: white;
+      border: 1px solid #ece0e8;
+      width: 42px;
+      height: 42px;
+      border-radius: 16px;
+      cursor: pointer;
+      font-size: 22px;
+    }
+
+    .login-help {
+      margin-top: 14px;
+      background: #f8fafc;
+      border-radius: 18px;
+      padding: 14px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .error-box {
+      display: none;
+      margin-bottom: 12px;
+      background: #fff1f2;
+      border: 1px solid #fecdd3;
+      color: #e11d48;
+      padding: 12px 14px;
+      border-radius: 16px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 22px;
+    }
+
+    .admin-panel {
+      padding: 24px;
+      background: #fff;
+      border: 1px solid #f0e6ee;
+    }
+
+    .admin-panel h4 {
+      font-size: 24px;
+      margin-bottom: 16px;
+    }
+
+    .product-list {
+      display: grid;
+      gap: 14px;
+      max-height: 560px;
+      overflow: auto;
+      padding-right: 4px;
+    }
+
+    .product-item {
+      display: grid;
+      grid-template-columns: 105px 1fr auto;
+      gap: 14px;
+      padding: 14px;
+      border-radius: 20px;
+      border: 1px solid #efe4eb;
+      background: #fff;
+      align-items: center;
+    }
+
+    .product-item img {
+      width: 105px;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 16px;
+    }
+
+    .product-item h5 {
+      font-size: 19px;
+      line-height: 1.2;
+    }
+
+    .product-item small {
+      display: inline-block;
+      margin: 6px 0;
+      color: var(--pink-dark);
+      font-weight: 800;
+    }
+
+    .product-item p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .product-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .btn-edit {
+      background: white;
+      border: 1px solid #e7dce5;
+      color: #374151;
+    }
+
+    .btn-delete {
+      background: #fff1f2;
+      border: 1px solid #fecdd3;
+      color: #e11d48;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin: 18px 0 30px;
+    }
+
+    .stat-card {
+      padding: 18px;
+    }
+
+    .stat-card h5 {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .stat-card strong {
+      font-size: 28px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    @media (max-width: 1024px) {
+      .hero-grid,
+      .contact-grid,
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .features-grid,
+      .products-grid,
+      .articles-grid,
+      .testimonials-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 760px) {
+      .menu {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 36px;
+      }
+
+      .hero-cards,
+      .features-grid,
+      .products-grid,
+      .articles-grid,
+      .testimonials-grid,
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .search-bar,
+      .footer-inner,
+      .product-item {
+        grid-template-columns: 1fr;
+        display: grid;
+      }
+
+      .search-bar {
+        justify-items: stretch;
+      }
+
+      .search-wrap {
+        width: 100%;
+      }
+
+      .product-actions {
+        justify-content: flex-start;
+      }
+
+      .hero-image img {
+        height: 380px;
+      }
+
+      .floating-box {
+        left: 18px;
+        right: 18px;
+        bottom: 18px;
+      }
+
+      .modal-box,
+      .modal-box.large {
+        padding: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="#beranda" class="brand">
+        <div class="logo">🍦</div>
+        <div>
+          Scoopsy
+          <small>Website Digital Es Krim</small>
+        </div>
+      </a>
+
+      <nav class="menu">
+        <a href="#beranda">Beranda</a>
+        <a href="#produk">Produk</a>
+        <a href="#artikel">Artikel</a>
+        <a href="#testimoni">Testimoni</a>
+        <a href="#kontak">Kontak</a>
+      </nav>
+
+      <button id="openLoginBtn" class="btn btn-secondary">Login Admin</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="beranda">
+      <div class="container hero-grid">
+        <div>
+          <div class="badge">✅ Website cepat, responsif, dan ada login admin</div>
+          <h1>Website es krim modern yang menarik dan siap dipakai untuk tugas digital.</h1>
+          <p>
+            Scoopsy dibuat untuk menampilkan kriteria website yang baik seperti desain menarik,
+            navigasi mudah, konten relevan, pencarian produk, testimoni, kontak, tampilan mobile-friendly,
+            serta login admin dengan dashboard pengelolaan produk.
+          </p>
+          <div class="hero-actions">
+            <a href="#produk" class="btn btn-primary">Lihat Produk</a>
+            <button id="heroAdminBtn" class="btn btn-secondary">Masuk Admin</button>
+          </div>
+
+          <div class="hero-cards">
+            <div class="mini-card">
+              <h4>Cepat</h4>
+              <p>Struktur ringan dan mudah dijalankan langsung dari browser.</p>
+            </div>
+            <div class="mini-card">
+              <h4>Mobile</h4>
+              <p>Tampilan tetap nyaman dipakai di HP, tablet, maupun laptop.</p>
+            </div>
+            <div class="mini-card">
+              <h4>Aman</h4>
+              <p>Sudah ada simulasi login admin dan dashboard manajemen produk.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?auto=format&fit=crop&w=1200&q=80" alt="Es krim premium" />
+            <div class="floating-box">
+              <small style="color:#e7338c;font-weight:800;letter-spacing:1.3px;text-transform:uppercase;">Menu Favorit</small>
+              <strong>Choco Bliss</strong>
+              <span>Rp18.000</span>
+              <p style="margin-top:8px;color:#6b7280;font-size:14px;line-height:1.7;">
+                Visual yang kuat membantu website terlihat lebih profesional dan menarik sejak pertama dibuka.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container features-grid">
+        <div class="feature-card">
+          <div class="icon-bubble">🔎</div>
+          <h3>Pencarian Produk</h3>
+          <p>Pengunjung bisa mencari menu es krim berdasarkan nama, rasa, atau deskripsi dengan cepat.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon-bubble">📄</div>
+          <h3>Konten Relevan</h3>
+          <p>Website punya artikel, deskripsi produk, testimoni, serta informasi kontak agar lebih lengkap.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon-bubble">📱</div>
+          <h3>Responsif</h3>
+          <p>Tata letak fleksibel membuat website tetap rapi di layar besar maupun kecil.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="produk">
+      <div class="container">
+        <div class="section-title">
+          <span class="eyebrow">Produk</span>
+          <h2>Menu es krim yang menarik dan mudah dicari</h2>
+          <p>Bagian produk dibuat visual, jelas, dan punya fitur pencarian agar pengguna lebih nyaman saat menjelajah website.</p>
+        </div>
+
+        <div class="search-bar mini-card">
+          <div>
+            <h3 style="font-size:26px;line-height:1.2;">Cari menu favorit</h3>
+            <p style="color:#6b7280;margin-top:6px;">Coba ketik: cokelat, vanilla, strawberry, matcha, atau taro.</p>
+          </div>
+          <div class="search-wrap">
+            <span>🔍</span>
+            <input type="text" id="searchInput" placeholder="Cari produk atau rasa..." />
+          </div>
+        </div>
+
+        <div class="products-grid" id="productGrid"></div>
+      </div>
+    </section>
+
+    <section class="section" id="artikel">
+      <div class="container">
+        <div class="section-title">
+          <span class="eyebrow">Artikel</span>
+          <h2>Konten yang relevan membuat website lebih bernilai</h2>
+          <p>Website yang baik tidak hanya menjual produk, tapi juga memberi informasi yang bermanfaat bagi pengunjung.</p>
+        </div>
+
+        <div class="articles-grid" id="articleGrid"></div>
+      </div>
+    </section>
+
+    <section class="section" id="testimoni">
+      <div class="container">
+        <div class="section-title">
+          <span class="eyebrow">Testimoni</span>
+          <h2>Ulasan pelanggan menambah kepercayaan</h2>
+          <p>Testimoni membuat tampilan website terasa lebih hidup, meyakinkan, dan profesional di mata pengunjung.</p>
+        </div>
+
+        <div class="testimonials-grid" id="testimonialGrid"></div>
+      </div>
+    </section>
+
+    <section class="section" id="kontak">
+      <div class="container contact-grid">
+        <div class="contact-card">
+          <div class="eyebrow" style="color:white;border-color:rgba(255,255,255,0.25);background:rgba(255,255,255,0.12);">Hubungi Kami</div>
+          <h3>Punya pertanyaan atau ingin pesan es krim?</h3>
+          <p>
+            Informasi kontak yang jelas membuat website lebih terpercaya. Data ini bisa kamu ganti sesuai kebutuhan tugas.
+          </p>
+          <div class="contact-item">📞 +62 812-3456-7890</div>
+          <div class="contact-item">✉️ halo@scoopsy.id</div>
+          <div class="contact-item">📍 Jl. Manis Sejahtera No. 12, Jakarta</div>
+        </div>
+
+        <form class="contact-form" onsubmit="event.preventDefault(); alert('Pesan berhasil dikirim.');">
+          <h3>Form Kontak</h3>
+          <p>Form ini menambah kesan profesional. Untuk tugas, versi statis seperti ini sudah cukup bagus.</p>
+          <input class="field" type="text" placeholder="Nama lengkap" required />
+          <input class="field" type="email" placeholder="Email" required />
+          <textarea class="field" rows="5" placeholder="Tulis pesan..." required></textarea>
+          <button class="btn btn-primary" type="submit">Kirim Pesan</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p>© 2026 Scoopsy. Website digital tema es krim untuk tugas.</p>
+      <div class="footer-links">
+        <a href="#produk">Produk</a>
+        <a href="#artikel">Artikel</a>
+        <a href="#kontak">Kontak</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="modal" id="loginModal">
+    <div class="modal-box">
+      <div class="modal-head">
+        <div>
+          <div class="eyebrow">Admin Login</div>
+          <h3>Masuk ke dashboard</h3>
+        </div>
+        <button class="close-btn" id="closeLoginBtn">×</button>
+      </div>
+
+      <div class="error-box" id="loginError">Username atau password salah.</div>
+
+      <form id="loginForm">
+        <input class="field" id="username" type="text" placeholder="Masukkan username" required />
+        <input class="field" id="password" type="password" placeholder="Masukkan password" required />
+        <button class="btn btn-primary" type="submit" style="width:100%;">Login Sekarang</button>
+      </form>
+
+      <div class="login-help">
+        <strong>Demo admin</strong><br />
+        Username: <b>admin</b><br />
+        Password: <b>admin123</b>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="articleModal">
+    <div class="modal-box">
+      <div class="modal-head">
+        <div>
+          <div class="eyebrow" id="articleCategory">Artikel</div>
+          <h3 id="articleTitle">Judul Artikel</h3>
+        </div>
+        <button class="close-btn" id="closeArticleBtn">×</button>
+      </div>
+      <p id="articleContent" style="color:#6b7280;line-height:1.9;"></p>
+    </div>
+  </div>
+
+  <div class="modal" id="adminModal">
+    <div class="modal-box large">
+      <div class="modal-head">
+        <div>
+          <div class="eyebrow">Dashboard Admin</div>
+          <h3>Kelola produk website</h3>
+          <p style="color:#6b7280;margin-top:8px;">Tambah, edit, dan hapus produk langsung dari dashboard.</p>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <button class="btn btn-secondary" id="newFormBtn">Form Baru</button>
+          <button class="btn btn-secondary" id="closeAdminBtn">Tutup</button>
+          <button class="btn" style="background:#111827;color:white;" id="logoutBtn">Logout</button>
+        </div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <h5>Total Produk</h5>
+          <strong id="totalProducts">0</strong>
+        </div>
+        <div class="stat-card">
+          <h5>Produk Tampil</h5>
+          <strong id="visibleProducts">0</strong>
+        </div>
+        <div class="stat-card">
+          <h5>Status Admin</h5>
+          <strong>Aktif</strong>
+        </div>
+      </div>
+
+      <div class="dashboard-grid">
+        <div class="admin-panel">
+          <h4 id="formTitle">Tambah Produk Baru</h4>
+          <form id="productForm">
+            <input type="hidden" id="productId" />
+            <input class="field" type="text" id="productName" placeholder="Nama produk" required />
+            <input class="field" type="text" id="productFlavor" placeholder="Rasa atau kategori" required />
+            <input class="field" type="number" id="productPrice" placeholder="Harga" required />
+            <input class="field" type="url" id="productImage" placeholder="Link gambar" required />
+            <textarea class="field" rows="5" id="productDesc" placeholder="Deskripsi produk" required></textarea>
+            <label style="display:flex;align-items:center;gap:10px;margin-bottom:16px;color:#6b7280;font-size:14px;">
+              <input type="checkbox" id="productFeatured" /> Jadikan best seller
+            </label>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;">
+              <button class="btn btn-primary" type="submit" id="saveProductBtn">Tambah Produk</button>
+              <button class="btn btn-secondary" type="button" id="resetFormBtn">Reset</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="admin-panel">
+          <h4>Daftar Produk</h4>
+          <div class="product-list" id="adminProductList"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const defaultProducts = [
+      {
+        id: 1,
+        name: 'Choco Bliss',
+        flavor: 'Cokelat Premium',
+        price: 18000,
+        image: 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=1200&q=80',
+        desc: 'Es krim lembut dengan rasa cokelat pekat dan topping chips renyah.',
+        featured: true,
+      },
+      {
+        id: 2,
+        name: 'Berry Cloud',
+        flavor: 'Strawberry',
+        price: 17000,
+        image: 'https://images.unsplash.com/photo-1570197788417-0e82375c9371?auto=format&fit=crop&w=1200&q=80',
+        desc: 'Perpaduan manis dan segar untuk pecinta rasa buah.',
+        featured: true,
+      },
+      {
+        id: 3,
+        name: 'Matcha Melt',
+        flavor: 'Matcha Jepang',
+        price: 20000,
+        image: 'https://images.unsplash.com/photo-1516559828984-fb3b99548b21?auto=format&fit=crop&w=1200&q=80',
+        desc: 'Aroma matcha lembut dengan sensasi creamy yang elegan.',
+        featured: false,
+      },
+      {
+        id: 4,
+        name: 'Vanilla Snow',
+        flavor: 'Vanilla Classic',
+        price: 16000,
+        image: 'https://images.unsplash.com/photo-1523294587484-bae6cc870010?auto=format&fit=crop&w=1200&q=80',
+        desc: 'Rasa klasik yang tidak pernah gagal untuk semua usia.',
+        featured: false,
+      },
+      {
+        id: 5,
+        name: 'Caramel Pop',
+        flavor: 'Salted Caramel',
+        price: 21000,
+        image: 'https://images.unsplash.com/photo-1488900128323-21503983a07e?auto=format&fit=crop&w=1200&q=80',
+        desc: 'Perpaduan karamel manis dan sedikit asin yang nagih.',
+        featured: false,
+      },
+      {
+        id: 6,
+        name: 'Taro Dream',
+        flavor: 'Taro Milk',
+        price: 19000,
+        image: 'https://images.unsplash.com/photo-1561845730-208ad5910553?auto=format&fit=crop&w=1200&q=80',
+        desc: 'Warna cantik, rasa lembut, cocok untuk menu favorit anak muda.',
+        featured: false,
+      }
+    ];
+
+    const articles = [
+      {
+        id: 1,
+        category: 'UI/UX',
+        title: 'Desain Responsif untuk Semua Perangkat',
+        excerpt: 'Tampilan yang rapi dan fleksibel membuat pengunjung nyaman saat membuka website dari laptop maupun HP.',
+        content: 'Website yang baik harus mampu menyesuaikan tata letak, ukuran teks, tombol, dan elemen visual di berbagai ukuran layar. Hal ini penting agar pengalaman pengguna tetap nyaman, cepat, dan mudah dipahami.'
+      },
+      {
+        id: 2,
+        category: 'Navigasi',
+        title: 'Navigasi Mudah Meningkatkan Pengalaman Pengguna',
+        excerpt: 'Menu yang sederhana membantu pengunjung menemukan produk, artikel, dan kontak dengan cepat.',
+        content: 'Susunan menu yang jelas, tombol ajakan yang terlihat, serta pencarian produk akan membuat pengunjung lebih betah. Navigasi yang baik juga membantu menaikkan kenyamanan dan nilai website.'
+      },
+      {
+        id: 3,
+        category: 'Teknis',
+        title: 'Kecepatan Website dan Keamanan Admin',
+        excerpt: 'Website harus ringan, cepat dibuka, dan punya pengelolaan admin yang aman walau versi tugas masih sederhana.',
+        content: 'Optimasi gambar, struktur halaman yang efisien, dan fitur login admin adalah bagian penting dari website modern. Untuk tugas sekolah atau kuliah, login lokal dapat dipakai sebagai simulasi sistem admin.'
+      }
+    ];
+
+    const testimonials = [
+      {
+        name: 'Nadia',
+        text: 'Website-nya enak dilihat dan gampang cari menu es krim favorit. Cocok banget buat contoh tugas digital.'
+      },
+      {
+        name: 'Rafi',
+        text: 'Bagian admin membantu banget karena produk bisa ditambah dan diubah langsung dari dashboard.'
+      },
+      {
+        name: 'Dina',
+        text: 'Tampilannya modern, responsif, dan punya fitur pencarian yang memudahkan pengguna.'
+      }
+    ];
+
+    const productGrid = document.getElementById('productGrid');
+    const articleGrid = document.getElementById('articleGrid');
+    const testimonialGrid = document.getElementById('testimonialGrid');
+    const searchInput = document.getElementById('searchInput');
+
+    const loginModal = document.getElementById('loginModal');
+    const articleModal = document.getElementById('articleModal');
+    const adminModal = document.getElementById('adminModal');
+
+    const openLoginBtn = document.getElementById('openLoginBtn');
+    const heroAdminBtn = document.getElementById('heroAdminBtn');
+    const closeLoginBtn = document.getElementById('closeLoginBtn');
+    const closeArticleBtn = document.getElementById('closeArticleBtn');
+    const closeAdminBtn = document.getElementById('closeAdminBtn');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const newFormBtn = document.getElementById('newFormBtn');
+
+    const loginForm = document.getElementById('loginForm');
+    const loginError = document.getElementById('loginError');
+
+    const articleCategory = document.getElementById('articleCategory');
+    const articleTitle = document.getElementById('articleTitle');
+    const articleContent = document.getElementById('articleContent');
+
+    const productForm = document.getElementById('productForm');
+    const productId = document.getElementById('productId');
+    const productName = document.getElementById('productName');
+    const productFlavor = document.getElementById('productFlavor');
+    const productPrice = document.getElementById('productPrice');
+    const productImage = document.getElementById('productImage');
+    const productDesc = document.getElementById('productDesc');
+    const productFeatured = document.getElementById('productFeatured');
+    const formTitle = document.getElementById('formTitle');
+    const saveProductBtn = document.getElementById('saveProductBtn');
+    const resetFormBtn = document.getElementById('resetFormBtn');
+    const adminProductList = document.getElementById('adminProductList');
+    const totalProducts = document.getElementById('totalProducts');
+    const visibleProducts = document.getElementById('visibleProducts');
+
+    function getProducts() {
+      const saved = localStorage.getItem('scoopsy-products');
+      return saved ? JSON.parse(saved) : defaultProducts;
+    }
+
+    function saveProducts(products) {
+      localStorage.setItem('scoopsy-products', JSON.stringify(products));
+    }
+
+    function isAdminLoggedIn() {
+      return localStorage.getItem('scoopsy-admin-auth') === 'true';
+    }
+
+    function setAdminLogin(value) {
+      localStorage.setItem('scoopsy-admin-auth', String(value));
+      updateAdminButtons();
+    }
+
+    function formatRupiah(value) {
+      return new Intl.NumberFormat('id-ID', {
+        style: 'currency',
+        currency: 'IDR',
+        maximumFractionDigits: 0
+      }).format(Number(value));
+    }
+
+    function openModal(modal) {
+      modal.classList.add('active');
+    }
+
+    function closeModal(modal) {
+      modal.classList.remove('active');
+    }
+
+    function updateAdminButtons() {
+      const text = isAdminLoggedIn() ? 'Dashboard Admin' : 'Login Admin';
+      openLoginBtn.textContent = text;
+      heroAdminBtn.textContent = isAdminLoggedIn() ? 'Buka Dashboard' : 'Masuk Admin';
+    }
+
+    function renderProducts(keyword = '') {
+      const products = getProducts();
+      const filtered = products.filter(product => {
+        const q = keyword.toLowerCase();
+        return (
+          product.name.toLowerCase().includes(q) ||
+          product.flavor.toLowerCase().includes(q) ||
+          product.desc.toLowerCase().includes(q)
+        );
+      });
+
+      visibleProducts.textContent = filtered.length;
+      totalProducts.textContent = products.length;
+
+      if (!filtered.length) {
+        productGrid.innerHTML = '<div class="mini-card" style="grid-column:1/-1;text-align:center;padding:30px;"><strong style="color:#e7338c;">Produk tidak ditemukan.</strong></div>';
+        return;
+      }
+
+      productGrid.innerHTML = filtered.map(product => `
+        <article class="product-card">
+          <div class="product-image">
+            <img src="${product.image}" alt="${product.name}">
+            ${product.featured ? '<div class="label-best">Best Seller</div>' : ''}
+          </div>
+          <div class="product-body">
+            <div class="product-meta">
+              <div>
+                <small>${product.flavor}</small>
+                <h3>${product.name}</h3>
+              </div>
+              <div class="price-tag">${formatRupiah(product.price)}</div>
+            </div>
+            <p>${product.desc}</p>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    function renderArticles() {
+      articleGrid.innerHTML = articles.map(article => `
+        <article class="article-card">
+          <span class="article-tag">${article.category}</span>
+          <h3>${article.title}</h3>
+          <p>${article.excerpt}</p>
+          <button class="btn btn-secondary" style="margin-top:18px;" onclick="openArticle(${article.id})">Baca Selengkapnya</button>
+        </article>
+      `).join('');
+    }
+
+    function renderTestimonials() {
+      testimonialGrid.innerHTML = testimonials.map(item => `
+        <article class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>“${item.text}”</p>
+          <h3 style="font-size:18px;margin-top:14px;">${item.name}</h3>
+        </article>
+      `).join('');
+    }
+
+    function renderAdminList() {
+      const products = getProducts();
+      adminProductList.innerHTML = products.map(product => `
+        <div class="product-item">
+          <img src="${product.image}" alt="${product.name}">
+          <div>
+            <h5>${product.name}</h5>
+            <small>${product.flavor} • ${formatRupiah(product.price)}</small>
+            <p>${product.desc}</p>
+          </div>
+          <div class="product-actions">
+            <button class="btn btn-edit" onclick="editProduct(${product.id})">Edit</button>
+            <button class="btn btn-delete" onclick="deleteProduct(${product.id})">Hapus</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function resetProductForm() {
+      productId.value = '';
+      productName.value = '';
+      productFlavor.value = '';
+      productPrice.value = '';
+      productImage.value = '';
+      productDesc.value = '';
+      productFeatured.checked = false;
+      formTitle.textContent = 'Tambah Produk Baru';
+      saveProductBtn.textContent = 'Tambah Produk';
+    }
+
+    function openArticle(id) {
+      const article = articles.find(item => item.id === id);
+      if (!article) return;
+      articleCategory.textContent = article.category;
+      articleTitle.textContent = article.title;
+      articleContent.textContent = article.content;
+      openModal(articleModal);
+    }
+
+    function editProduct(id) {
+      const products = getProducts();
+      const product = products.find(item => item.id === id);
+      if (!product) return;
+
+      productId.value = product.id;
+      productName.value = product.name;
+      productFlavor.value = product.flavor;
+      productPrice.value = product.price;
+      productImage.value = product.image;
+      productDesc.value = product.desc;
+      productFeatured.checked = !!product.featured;
+      formTitle.textContent = 'Edit Produk';
+      saveProductBtn.textContent = 'Simpan Perubahan';
+      openModal(adminModal);
+    }
+
+    function deleteProduct(id) {
+      const yes = confirm('Yakin ingin menghapus produk ini?');
+      if (!yes) return;
+      const products = getProducts().filter(item => item.id !== id);
+      saveProducts(products);
+      renderProducts(searchInput.value);
+      renderAdminList();
+      resetProductForm();
+    }
+
+    window.openArticle = openArticle;
+    window.editProduct = editProduct;
+    window.deleteProduct = deleteProduct;
+
+    openLoginBtn.addEventListener('click', () => {
+      if (isAdminLoggedIn()) {
+        renderAdminList();
+        openModal(adminModal);
+      } else {
+        openModal(loginModal);
+      }
+    });
+
+    heroAdminBtn.addEventListener('click', () => {
+      if (isAdminLoggedIn()) {
+        renderAdminList();
+        openModal(adminModal);
+      } else {
+        openModal(loginModal);
+      }
+    });
+
+    closeLoginBtn.addEventListener('click', () => closeModal(loginModal));
+    closeArticleBtn.addEventListener('click', () => closeModal(articleModal));
+    closeAdminBtn.addEventListener('click', () => closeModal(adminModal));
+    newFormBtn.addEventListener('click', resetProductForm);
+
+    logoutBtn.addEventListener('click', () => {
+      setAdminLogin(false);
+      closeModal(adminModal);
+    });
+
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+
+      if (username === 'admin' && password === 'admin123') {
+        setAdminLogin(true);
+        loginError.style.display = 'none';
+        closeModal(loginModal);
+        renderAdminList();
+        openModal(adminModal);
+        loginForm.reset();
+      } else {
+        loginError.style.display = 'block';
+      }
+    });
+
+    productForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const products = getProducts();
+      const data = {
+        id: productId.value ? Number(productId.value) : Date.now(),
+        name: productName.value.trim(),
+        flavor: productFlavor.value.trim(),
+        price: Number(productPrice.value),
+        image: productImage.value.trim(),
+        desc: productDesc.value.trim(),
+        featured: productFeatured.checked,
+      };
+
+      if (productId.value) {
+        const updated = products.map(item => item.id === Number(productId.value) ? data : item);
+        saveProducts(updated);
+      } else {
+        saveProducts([data, ...products]);
+      }
+
+      renderProducts(searchInput.value);
+      renderAdminList();
+      resetProductForm();
+    });
+
+    resetFormBtn.addEventListener('click', resetProductForm);
+
+    searchInput.addEventListener('input', (e) => {
+      renderProducts(e.target.value);
+    });
+
+    [loginModal, articleModal, adminModal].forEach(modal => {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal(modal);
+      });
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeModal(loginModal);
+        closeModal(articleModal);
+        closeModal(adminModal);
+      }
+    });
+
+    updateAdminButtons();
+    renderProducts();
+    renderArticles();
+    renderTestimonials();
+    renderAdminList();
+  </script>
+</body>
+</html>
