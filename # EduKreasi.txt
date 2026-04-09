@@ -1,0 +1,16 @@
+# EduKreasi
+
+EduKreasi adalah website digital modern yang dibuat untuk tugas kuliah. Website ini memiliki tampilan responsif, fitur pencarian artikel, testimoni, informasi kontak, serta login admin dan dashboard pengelolaan artikel.
+
+## Fitur
+- Tampilan modern dan responsif
+- Navigasi yang jelas
+- Fitur pencarian artikel
+- Login admin
+- Dashboard admin
+- Tambah, edit, dan hapus artikel
+- Penyimpanan data dengan localStorage
+
+## Login Admin
+- Username: admin
+- Password: admin123

@@ -1,0 +1,235 @@
+const defaultArticles = [
+  {
+    id: 1,
+    title: "Desain Responsif untuk Semua Perangkat",
+    category: "UI/UX",
+    excerpt: "Tampilan yang fleksibel membuat pengguna nyaman saat membuka website dari laptop maupun smartphone.",
+    content: "Website yang baik harus mampu menyesuaikan tata letak, ukuran teks, tombol, dan elemen visual di berbagai ukuran layar agar pengalaman pengguna tetap konsisten."
+  },
+  {
+    id: 2,
+    title: "Kecepatan Website dan Pengaruhnya",
+    category: "Performance",
+    excerpt: "Kecepatan akses sangat memengaruhi kenyamanan pengguna dan peluang interaksi.",
+    content: "Optimasi struktur halaman, penggunaan elemen ringan, dan organisasi konten yang baik dapat membantu website tetap cepat saat diakses."
+  },
+  {
+    id: 3,
+    title: "Pentingnya Login Admin yang Aman",
+    category: "Security",
+    excerpt: "Halaman admin harus mudah digunakan namun tetap terlindungi agar data tidak mudah diakses pihak lain.",
+    content: "Dalam website ini, akses admin dibuat melalui login sederhana dan dashboard pengelolaan konten agar sesuai untuk kebutuhan presentasi tugas digital."
+  }
+];
+
+const ADMIN_USERNAME = "admin";
+const ADMIN_PASSWORD = "admin123";
+
+const articleList = document.getElementById("articleList");
+const searchInput = document.getElementById("searchInput");
+const loginModal = document.getElementById("loginModal");
+const openLogin = document.getElementById("openLogin");
+const closeLogin = document.getElementById("closeLogin");
+const loginForm = document.getElementById("loginForm");
+const loginError = document.getElementById("loginError");
+const adminNotice = document.getElementById("adminNotice");
+const adminPanel = document.getElementById("adminPanel");
+const logoutBtn = document.getElementById("logoutBtn");
+const articleForm = document.getElementById("articleForm");
+const resetFormBtn = document.getElementById("resetForm");
+const formTitle = document.getElementById("formTitle");
+const menuToggle = document.getElementById("menuToggle");
+const menu = document.getElementById("menu");
+
+function getArticles() {
+  const saved = localStorage.getItem("edukreasi_articles");
+  return saved ? JSON.parse(saved) : defaultArticles;
+}
+
+function saveArticles(data) {
+  localStorage.setItem("edukreasi_articles", JSON.stringify(data));
+}
+
+function isAdminLoggedIn() {
+  return localStorage.getItem("edukreasi_admin_login") === "true";
+}
+
+function setAdminLoggedIn(status) {
+  localStorage.setItem("edukreasi_admin_login", status ? "true" : "false");
+}
+
+function renderArticles(keyword = "") {
+  const articles = getArticles();
+  const filtered = articles.filter(article => {
+    const fullText = `${article.title} ${article.category} ${article.excerpt} ${article.content}`.toLowerCase();
+    return fullText.includes(keyword.toLowerCase());
+  });
+
+  if (filtered.length === 0) {
+    articleList.innerHTML = `
+      <div class="card" style="grid-column: 1 / -1; text-align:center;">
+        <h3>Artikel tidak ditemukan</h3>
+        <p>Coba gunakan kata kunci lain.</p>
+      </div>
+    `;
+    return;
+  }
+
+  articleList.innerHTML = filtered.map(article => `
+    <div class="card article-card">
+      <span class="category">${article.category}</span>
+      <h3>${article.title}</h3>
+      <p><strong>Ringkasan:</strong> ${article.excerpt}</p>
+      <p style="margin-top:10px;">${article.content}</p>
+      ${
+        isAdminLoggedIn()
+          ? `
+          <div class="actions">
+            <button onclick="editArticle(${article.id})">Edit</button>
+            <button class="delete" onclick="deleteArticle(${article.id})">Hapus</button>
+          </div>
+        `
+          : ""
+      }
+    </div>
+  `).join("");
+}
+
+function updateAdminView() {
+  if (isAdminLoggedIn()) {
+    adminNotice.classList.add("hidden");
+    adminPanel.classList.remove("hidden");
+    openLogin.textContent = "Admin Aktif";
+  } else {
+    adminNotice.classList.remove("hidden");
+    adminPanel.classList.add("hidden");
+    openLogin.textContent = "Login Admin";
+  }
+
+  renderArticles(searchInput.value);
+}
+
+function resetForm() {
+  document.getElementById("articleId").value = "";
+  document.getElementById("title").value = "";
+  document.getElementById("category").value = "";
+  document.getElementById("excerpt").value = "";
+  document.getElementById("content").value = "";
+  formTitle.textContent = "Tambah Artikel Baru";
+}
+
+function openModal() {
+  loginModal.classList.remove("hidden");
+}
+
+function closeModal() {
+  loginModal.classList.add("hidden");
+  loginError.textContent = "";
+  loginForm.reset();
+}
+
+openLogin.addEventListener("click", () => {
+  if (!isAdminLoggedIn()) {
+    openModal();
+  }
+});
+
+closeLogin.addEventListener("click", closeModal);
+
+loginModal.addEventListener("click", (e) => {
+  if (e.target === loginModal) {
+    closeModal();
+  }
+});
+
+loginForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const username = document.getElementById("username").value.trim();
+  const password = document.getElementById("password").value.trim();
+
+  if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+    setAdminLoggedIn(true);
+    closeModal();
+    updateAdminView();
+    return;
+  }
+
+  loginError.textContent = "Username atau password salah.";
+});
+
+logoutBtn.addEventListener("click", () => {
+  setAdminLoggedIn(false);
+  updateAdminView();
+  resetForm();
+});
+
+searchInput.addEventListener("input", (e) => {
+  renderArticles(e.target.value);
+});
+
+articleForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const id = document.getElementById("articleId").value;
+  const title = document.getElementById("title").value.trim();
+  const category = document.getElementById("category").value.trim();
+  const excerpt = document.getElementById("excerpt").value.trim();
+  const content = document.getElementById("content").value.trim();
+
+  let articles = getArticles();
+
+  if (id) {
+    articles = articles.map(article =>
+      article.id == id ? { id: Number(id), title, category, excerpt, content } : article
+    );
+  } else {
+    articles.unshift({
+      id: Date.now(),
+      title,
+      category,
+      excerpt,
+      content
+    });
+  }
+
+  saveArticles(articles);
+  resetForm();
+  renderArticles(searchInput.value);
+});
+
+resetFormBtn.addEventListener("click", resetForm);
+
+menuToggle.addEventListener("click", () => {
+  menu.classList.toggle("show");
+});
+
+function editArticle(id) {
+  const articles = getArticles();
+  const article = articles.find(item => item.id === id);
+  if (!article) return;
+
+  document.getElementById("articleId").value = article.id;
+  document.getElementById("title").value = article.title;
+  document.getElementById("category").value = article.category;
+  document.getElementById("excerpt").value = article.excerpt;
+  document.getElementById("content").value = article.content;
+  formTitle.textContent = "Edit Artikel";
+
+  window.location.hash = "admin";
+}
+
+function deleteArticle(id) {
+  const confirmed = confirm("Yakin ingin menghapus artikel ini?");
+  if (!confirmed) return;
+
+  const articles = getArticles().filter(article => article.id !== id);
+  saveArticles(articles);
+  renderArticles(searchInput.value);
+  resetForm();
+}
+
+window.editArticle = editArticle;
+window.deleteArticle = deleteArticle;
+
+renderArticles();
+updateAdminView();
