@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sweet Scoops | Toko Es Krim Premium</title>
+  <meta name="description" content="Sweet Scoops adalah website toko es krim premium yang cepat, responsif, user-friendly, dan dilengkapi login admin untuk mengelola produk." />
+  <meta name="keywords" content="es krim, toko es krim, website es krim, dessert, gelato, admin login" />
+  <meta name="author" content="Generated with AI for school project" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Langsung ke konten</a>
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="index.html" class="logo" aria-label="Sweet Scoops Homepage">
+        <span class="logo-icon">🍦</span>
+        <span>Sweet Scoops</span>
+      </a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Buka menu navigasi">☰</button>
+
+      <nav class="main-nav" id="mainNav">
+        <a href="#home">Home</a>
+        <a href="#products">Produk</a>
+        <a href="#about">Tentang</a>
+        <a href="#testimonials">Testimoni</a>
+        <a href="#blog">Artikel</a>
+        <a href="#contact">Kontak</a>
+        <a href="login.html" class="btn btn-nav">Login Admin</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <p class="eyebrow">Website toko es krim modern</p>
+          <h1>Es krim premium yang bikin hari jadi lebih manis.</h1>
+          <p class="hero-description">
+            Nikmati berbagai rasa favorit mulai dari vanilla, cokelat, stroberi, hingga matcha.
+            Website ini dibuat cepat, responsif, mudah dinavigasi, dan punya fitur login admin untuk pengelolaan produk.
+          </p>
+          <div class="hero-actions">
+            <a href="#products" class="btn btn-primary">Lihat Produk</a>
+            <a href="#contact" class="btn btn-secondary">Hubungi Kami</a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat-card">
+              <strong id="statProducts">0</strong>
+              <span>Produk Aktif</span>
+            </div>
+            <div class="stat-card">
+              <strong>4.9/5</strong>
+              <span>Rating Pelanggan</span>
+            </div>
+            <div class="stat-card">
+              <strong>Fast</strong>
+              <span>Mobile Friendly</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="ice-illustration">
+            <div class="circle pink"></div>
+            <div class="circle yellow"></div>
+            <div class="circle blue"></div>
+            <div class="floating-card card-1">🍓 Fresh Strawberry</div>
+            <div class="floating-card card-2">🍫 Dark Choco</div>
+            <div class="cone">🍦</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="features">
+      <div class="container">
+        <div class="section-heading center">
+          <p class="eyebrow">Kenapa website ini bagus?</p>
+          <h2>Dibuat sesuai kriteria website yang baik</h2>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card">
+            <h3>Desain Menarik</h3>
+            <p>Warna cerah, tipografi jelas, dan layout rapi membuat website nyaman dilihat.</p>
+          </article>
+          <article class="feature-card">
+            <h3>Navigasi Mudah</h3>
+            <p>Menu dibuat sederhana agar pengunjung cepat menemukan informasi yang dicari.</p>
+          </article>
+          <article class="feature-card">
+            <h3>Responsif</h3>
+            <p>Tampilan menyesuaikan desktop, tablet, dan smartphone tanpa merusak layout.</p>
+          </article>
+          <article class="feature-card">
+            <h3>Pencarian Produk</h3>
+            <p>Fitur search membantu pengunjung menemukan rasa es krim dengan lebih cepat.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="products-section" id="products">
+      <div class="container">
+        <div class="section-heading between">
+          <div>
+            <p class="eyebrow">Produk unggulan</p>
+            <h2>Cari rasa favoritmu</h2>
+          </div>
+          <div class="search-box">
+            <label for="searchInput" class="sr-only">Cari produk</label>
+            <input type="text" id="searchInput" placeholder="Cari rasa es krim..." />
+          </div>
+        </div>
+
+        <div class="product-grid" id="productGrid"></div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="container about-grid">
+        <div>
+          <p class="eyebrow">Tentang kami</p>
+          <h2>Sweet Scoops menghadirkan dessert berkualitas dengan pengalaman digital yang nyaman.</h2>
+          <p>
+            Kami fokus pada kualitas rasa, tampilan yang menarik, dan kemudahan akses. Informasi produk dibuat jelas, tombol aksi mudah ditemukan,
+            dan halaman dirancang ringan agar loading cepat. Ini membantu pengunjung merasa nyaman lebih lama saat menjelajahi website.
+          </p>
+          <ul class="check-list">
+            <li>Informasi produk jelas dan relevan</li>
+            <li>SEO-friendly dengan struktur heading yang rapi</li>
+            <li>Kontak, media sosial, dan testimoni tersedia</li>
+          </ul>
+        </div>
+        <div class="about-card">
+          <h3>Promo Minggu Ini</h3>
+          <p>Beli 2 scoop gratis topping rainbow sprinkle untuk semua varian premium.</p>
+          <a href="#contact" class="btn btn-primary">Pesan Sekarang</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="testimonials" id="testimonials">
+      <div class="container">
+        <div class="section-heading center">
+          <p class="eyebrow">Review pelanggan</p>
+          <h2>Testimoni yang bikin makin yakin</h2>
+        </div>
+
+        <div class="testimonial-grid">
+          <article class="testimonial-card">
+            <p>“Website-nya cantik, gampang dipakai, dan produk es krimnya kelihatan menarik banget.”</p>
+            <strong>— Nabila</strong>
+          </article>
+          <article class="testimonial-card">
+            <p>“Aku suka karena tampilannya cepat dibuka di HP dan menu produknya jelas.”</p>
+            <strong>— Arsya</strong>
+          </article>
+          <article class="testimonial-card">
+            <p>“Admin login-nya jalan, jadi cocok buat tugas praktik website digital.”</p>
+            <strong>— Rehan</strong>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="blog" id="blog">
+      <div class="container">
+        <div class="section-heading center">
+          <p class="eyebrow">Artikel</p>
+          <h2>Konten berkelanjutan untuk mendukung website</h2>
+        </div>
+
+        <div class="blog-grid">
+          <article class="blog-card">
+            <h3>Tips memilih es krim untuk cuaca panas</h3>
+            <p>Pilih rasa segar seperti stroberi atau mint untuk sensasi yang lebih ringan dan menyegarkan.</p>
+          </article>
+          <article class="blog-card">
+            <h3>Kenapa website cepat itu penting?</h3>
+            <p>Loading cepat membantu pengunjung bertahan lebih lama dan mendukung pengalaman pengguna yang lebih baik.</p>
+          </article>
+          <article class="blog-card">
+            <h3>Varian premium paling favorit pelanggan</h3>
+            <p>Dark choco, matcha, dan cookies cream jadi tiga varian yang paling sering dipilih pelanggan kami.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="analytics-section">
+      <div class="container analytics-grid">
+        <article class="analytics-card">
+          <h3>Analisis Kinerja</h3>
+          <p>Simulasi data sederhana untuk menunjukkan pentingnya pengukuran performa website.</p>
+        </article>
+        <article class="analytics-card">
+          <h3 id="visitCounter">0 kunjungan lokal</h3>
+          <p>Counter ini tersimpan di browser untuk memberi contoh fitur analitik ringan.</p>
+        </article>
+        <article class="analytics-card">
+          <h3>Layanan Pelanggan</h3>
+          <p>Hubungi kami lewat email, WhatsApp, atau form kontak agar respons lebih cepat.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="faq-section">
+      <div class="container">
+        <div class="section-heading center">
+          <p class="eyebrow">FAQ</p>
+          <h2>Layanan pelanggan yang responsif</h2>
+        </div>
+
+        <div class="faq-list">
+          <details>
+            <summary>Apakah website ini bisa dibuka di HP?</summary>
+            <p>Ya, website ini dibuat responsif sehingga tampilannya tetap rapi di layar kecil.</p>
+          </details>
+          <details>
+            <summary>Apakah ada login admin?</summary>
+            <p>Ada. Login admin tersedia pada tombol “Login Admin” di menu navigasi.</p>
+          </details>
+          <details>
+            <summary>Bagaimana cara mengubah produk?</summary>
+            <p>Masuk ke halaman admin, lalu tambah, edit, atau hapus produk melalui dashboard.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container contact-grid">
+        <div>
+          <p class="eyebrow">Kontak</p>
+          <h2>Hubungi Sweet Scoops</h2>
+          <p>Email: hello@sweetscoops.com</p>
+          <p>WhatsApp: +62 812-3456-7890</p>
+          <p>Alamat: Jl. Dessert Bahagia No. 8, Jakarta</p>
+          <p>
+            Maps:
+            <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer">Buka lokasi</a>
+          </p>
+
+          <div class="social-links">
+            <a href="#" aria-label="Instagram">Instagram</a>
+            <a href="#" aria-label="TikTok">TikTok</a>
+            <a href="#" aria-label="WhatsApp">WhatsApp</a>
+          </div>
+        </div>
+
+        <form class="contact-form" id="contactForm">
+          <label>
+            Nama
+            <input type="text" name="name" placeholder="Masukkan nama" required />
+          </label>
+          <label>
+            Email
+            <input type="email" name="email" placeholder="Masukkan email" required />
+          </label>
+          <label>
+            Pesan
+            <textarea name="message" rows="5" placeholder="Tulis pesan Anda" required></textarea>
+          </label>
+          <button type="submit" class="btn btn-primary">Kirim Pesan</button>
+          <p class="form-note">Data form hanya simulasi dan tidak dikirim ke server.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-wrap">
+      <p>© 2026 Sweet Scoops. Website tugas digital dengan fitur admin login.</p>
+      <a href="login.html">Halaman Admin</a>
+    </div>
+  </footer>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "IceCreamShop",
+    "name": "Sweet Scoops",
+    "description": "Toko es krim premium dengan website responsif dan login admin.",
+    "telephone": "+62 812-3456-7890",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Jl. Dessert Bahagia No. 8",
+      "addressLocality": "Jakarta",
+      "addressCountry": "ID"
+    }
+  }
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard Admin | Sweet Scoops</title>
+  <meta name="description" content="Dashboard admin untuk menambah, mengedit, dan menghapus produk Sweet Scoops." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="admin-body">
+  <header class="admin-header">
+    <div class="container admin-topbar">
+      <div>
+        <p class="eyebrow">Dashboard</p>
+        <h1>Admin Sweet Scoops</h1>
+      </div>
+      <div class="admin-actions">
+        <a href="index.html" class="btn btn-secondary">Lihat Website</a>
+        <button id="logoutBtn" class="btn btn-danger">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container admin-main">
+    <section class="dashboard-cards">
+      <article class="dashboard-card">
+        <h3>Total Produk</h3>
+        <strong id="dashboardTotalProducts">0</strong>
+      </article>
+      <article class="dashboard-card">
+        <h3>Status Login</h3>
+        <strong>Aman</strong>
+      </article>
+      <article class="dashboard-card">
+        <h3>Mode</h3>
+        <strong>Local Admin</strong>
+      </article>
+    </section>
+
+    <section class="admin-grid">
+      <div class="panel">
+        <div class="panel-heading">
+          <h2>Tambah / Edit Produk</h2>
+          <p>Data produk akan tampil otomatis di halaman utama.</p>
+        </div>
+
+        <form id="productForm" class="admin-form">
+          <input type="hidden" id="productId" />
+          <label>
+            Nama Produk
+            <input type="text" id="productName" placeholder="Contoh: Berry Blast" required />
+          </label>
+          <label>
+            Harga
+            <input type="number" id="productPrice" placeholder="Contoh: 28000" required />
+          </label>
+          <label>
+            Kategori
+            <input type="text" id="productCategory" placeholder="Contoh: Fruity" required />
+          </label>
+          <label>
+            Emoji
+            <input type="text" id="productEmoji" placeholder="Contoh: 🍓" maxlength="2" required />
+          </label>
+          <label>
+            Deskripsi
+            <textarea id="productDescription" rows="4" placeholder="Tulis deskripsi produk" required></textarea>
+          </label>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Simpan Produk</button>
+            <button type="button" id="resetFormBtn" class="btn btn-secondary">Reset</button>
+          </div>
+        </form>
+        <p id="adminMessage" class="message-box"></p>
+      </div>
+
+      <div class="panel">
+        <div class="panel-heading">
+          <h2>Daftar Produk</h2>
+          <p>Klik edit atau hapus untuk mengelola data.</p>
+        </div>
+        <div id="productTableWrap" class="table-wrap"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

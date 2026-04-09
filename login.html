@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login Admin | Sweet Scoops</title>
+  <meta name="description" content="Halaman login admin Sweet Scoops untuk mengelola produk website." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="auth-body">
+  <div class="auth-container">
+    <a href="index.html" class="back-link">← Kembali ke Website</a>
+    <div class="auth-card">
+      <div class="auth-header">
+        <div class="auth-icon">🔐</div>
+        <h1>Login Admin</h1>
+        <p>Masuk untuk mengelola produk Sweet Scoops</p>
+      </div>
+
+      <form id="loginForm" class="auth-form">
+        <label>
+          Username
+          <input type="text" id="username" placeholder="Masukkan username" required />
+        </label>
+        <label>
+          Password
+          <input type="password" id="password" placeholder="Masukkan password" required />
+        </label>
+        <button type="submit" class="btn btn-primary full-width">Login</button>
+        <p class="login-hint">Demo akun admin: <strong>admin</strong> / <strong>admin123</strong></p>
+        <p id="loginMessage" class="message-box"></p>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
